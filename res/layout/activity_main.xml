@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_purple"
+    tools:context=".MainActivity">
+
+
+    <ScrollView
+        android:id="@+id/scroll1"
+        style="@android:style/Widget.ScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:scrollbarStyle="insideOverlay">
+
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="90dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp">
+
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:hint="1"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="2"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="3"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="4"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText5"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="5"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText6"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="6"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/editText7"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="7"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/EditText8"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="8"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/EditText9"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="9"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/EditText10"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="10"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/EditText11"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="11"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/EditText12"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="12"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/EditText13"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="13"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/editText14"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:hint="14"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText15"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/focus_edit"
+                android:ems="1"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:hint="15"
+                android:inputType="textCapCharacters"
+                android:textAllCaps="false"
+                android:textColorHint="@android:color/holo_blue_bright"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/scroll1"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:dropDownWidth="match_parent"
+            android:popupBackground="@android:drawable/spinner_dropdown_background" />
+    </LinearLayout>
+
+
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout3"
+        android:layout_toRightOf="@+id/scroll1">
+
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+
+        </ListView>
+        
+        
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/btn_selector"
+            android:foreground="@drawable/pesquisar"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/btn_selector"
+            android:foreground="@android:drawable/ic_delete"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold|italic" />
+
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="CARREGANDO..."
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

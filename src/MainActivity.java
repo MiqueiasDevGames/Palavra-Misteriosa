@@ -1,0 +1,573 @@
+package com.br.ajuda;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.AssetManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+	
+	private Handler handler;
+
+
+
+	//tEXTvIEW
+	private TextView carregandoText;
+
+	//Letras
+	private EditText myText1;
+	private EditText myText2;
+	private EditText myText3;
+	private EditText myText4;
+	private EditText myText5;
+	private EditText myText6;
+	private EditText myText7;
+	private EditText myText8;
+	private EditText myText9;
+	private EditText myText10;
+	private EditText myText11;
+	private EditText myText12;
+	private EditText myText13;
+	private EditText myText14;
+	private EditText myText15;
+
+
+	//O lisview;
+	private ListView listView;
+	private ArrayAdapter<String> adapter;
+
+
+	private ArrayList<String> myPalavras;
+	private Runnable myRunnable2;
+
+
+	private int numeroLetra = 0;
+
+	private AssetManager assetManager;
+	//private StringBuilder meuTexto;
+
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		//MobileAds.initialize(this, "ca-app-pub-4414457728857512~5080219251");
+
+		handler = new Handler();
+
+		//banner
+		//mAdView =  findViewById(R.id.adView);
+
+		assetManager = getResources().getAssets();
+		//meuTexto = new StringBuilder();
+		myPalavras = new ArrayList<>();
+
+
+		carregandoText =  findViewById(R.id.textView);
+
+
+		//Letras
+		myText1 =  findViewById(R.id.editText1);
+		myText2 =  findViewById(R.id.editText2);
+		myText3 =  findViewById(R.id.editText3);
+		myText4 =  findViewById(R.id.editText4);
+		myText5 =  findViewById(R.id.editText5);
+		myText6 =  findViewById(R.id.editText6);
+		myText7 =  findViewById(R.id.editText7);
+		myText8 =  findViewById(R.id.EditText8);
+		myText9 =  findViewById(R.id.EditText9);
+		myText10 =  findViewById(R.id.EditText10);
+		myText11 =  findViewById(R.id.EditText11);
+		myText12 = findViewById(R.id.EditText12);
+		myText13 =  findViewById(R.id.EditText13);
+		myText14 =  findViewById(R.id.editText14);
+		myText15 =  findViewById(R.id.editText15);
+
+
+
+		//Spinner
+		final String[] numberText = new String[]{"FILTRO","1 LETRA", "2 LETRAS", "3 LETRAS", "4 LETRAS", "5 LETRAS", "6 LETRAS", "7 LETRAS", "8 LETRAS", "9 LETRAS", "10 LETRAS", "11 LETRAS", "12 LETRAS", "13 LETRAS", "14 LETRAS", "15 LETRAS"};
+
+
+		final Spinner spinner = findViewById(R.id.spinner);
+
+		ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, numberText);
+
+		adapter3.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+
+		spinner.setAdapter(adapter3);
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				numeroLetra = position;
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				numeroLetra = 0;
+			}
+		});
+		//Spinner
+
+
+		//A ListView
+		listView =  findViewById(R.id.listview);
+
+		final Button button =  findViewById(R.id.button1);
+
+		Button button2 =  findViewById(R.id.button2);
+
+
+		button2.setOnClickListener(new Button.OnClickListener() {
+			public void onClick(View v) {
+
+				//mAdView.setVisibility(View.GONE);
+
+				//Limpar Tudo
+				myText1.setText("");
+				myText2.setText("");
+				myText3.setText("");
+				myText4.setText("");
+				myText5.setText("");
+				myText6.setText("");
+				myText7.setText("");
+				myText8.setText("");
+				myText9.setText("");
+				myText10.setText("");
+				myText11.setText("");
+				myText12.setText("");
+				myText13.setText("");
+				myText14.setText("");
+				myText15.setText("");
+
+				//limpa ListView, talvez mudar meuTexto no final do adapter para outro arraylist que contenha palavras salvas pelo usuario para ficar na tela
+				myPalavras.clear();
+
+				ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, myPalavras);
+
+				listView.setAdapter(adapter2);
+
+			}
+		});
+
+		button.setOnClickListener(new Button.OnClickListener() {
+
+			public void onClick(View v) {
+
+				carregandoText.setVisibility(View.VISIBLE);
+
+
+
+				
+
+					//Buscar palavras
+					handler.removeCallbacks(myRunnable2);
+					handler.post(myRunnable2);
+
+
+				
+
+
+
+			}
+		});
+
+
+
+
+
+		//escolhe palavras
+		myRunnable2 = new Runnable() {
+            @Override
+            public void run() {
+                //palavras escolhe
+                QualPalavra();
+
+                //ListView
+                adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, myPalavras);
+                listView.setAdapter(adapter);
+
+                //carregando... gone
+                carregandoText.setVisibility(View.GONE);
+            }
+        };
+
+
+
+
+
+		//anuncio em banner
+		//AdRequest adRequest2 = new AdRequest.Builder().build();
+		//mAdView.loadAd(adRequest2);
+
+	}
+
+
+
+	private boolean VerificarInternet() {
+
+		ConnectivityManager myCm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetwork = myCm.getActiveNetworkInfo();
+		boolean isConneted = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+		return isConneted;
+	}
+
+	private void AlertDialog() {
+		AlertDialog.Builder dialogo = new AlertDialog.Builder(MainActivity.this);
+		dialogo.setCancelable(false);
+		dialogo.setTitle("Você está off-line.");
+		dialogo.setMessage("Ative os dados da rede celular ou WI-FI");
+		dialogo.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// FIRE ZE MISSILE
+				dialog.dismiss();
+
+				myPalavras.clear();
+				myPalavras.add("Sem Conexão!!!");
+
+			}
+		});
+
+		dialogo.show();
+	}
+
+	private void NadaEncontrado() {
+		AlertDialog.Builder dialogo = new AlertDialog.Builder(MainActivity.this);
+		dialogo.setCancelable(false);
+		dialogo.setTitle("NADA ENCONTRADO");
+		dialogo.setMessage("Verifique se colocou as letras e definiu o filtro corretamente!");
+		dialogo.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// FIRE ZE MISSILE
+				dialog.dismiss();
+
+
+
+			}
+		});
+
+		dialogo.show();
+	}
+
+
+	private void QualPalavra(){
+
+		String Tletra1 = myText1.getText().toString();
+		String Tletra2 = myText2.getText().toString();
+		String Tletra3 = myText3.getText().toString();
+		String Tletra4 = myText4.getText().toString();
+		String Tletra5 = myText5.getText().toString();
+		String Tletra6 = myText6.getText().toString();
+		String Tletra7 = myText7.getText().toString();
+		String Tletra8 = myText8.getText().toString();
+		String Tletra9 = myText9.getText().toString();
+		String Tletra10 = myText10.getText().toString();
+		String Tletra11 = myText11.getText().toString();
+		String Tletra12 = myText12.getText().toString();
+		String Tletra13 = myText13.getText().toString();
+		String Tletra14 = myText14.getText().toString();
+		String Tletra15 = myText15.getText().toString();
+
+
+		byte usaPalavra = 1;
+
+		myPalavras.clear();
+
+		String meuTexto = "";
+
+		InputStream inputStream = null;
+		BufferedReader bufferedReader = null;
+
+		try {
+
+
+			if(numeroLetra != 0) {
+				inputStream = assetManager.open("lista_" + numeroLetra + ".txt");
+
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+
+				bufferedReader = new BufferedReader(inputStreamReader, 1008192);
+
+
+				try {
+
+					//lê primaira linha
+					meuTexto = bufferedReader.readLine();
+
+					//tamanho listatotal 1275478
+					while (meuTexto != null) {
+						//importante, setar para 1 novamente
+						usaPalavra = 1;
+
+
+						if (!Tletra1.equalsIgnoreCase("")) {
+
+							if (!Tletra1.equalsIgnoreCase(String.valueOf(meuTexto.charAt(0)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra2.equalsIgnoreCase("")) {
+
+
+							if (!Tletra2.equalsIgnoreCase(String.valueOf(meuTexto.charAt(1)))) {
+
+								usaPalavra = 0;
+
+							}
+
+						}
+
+
+						//Separando o codigo
+						if (!Tletra3.equalsIgnoreCase("")) {
+
+							if (!Tletra3.equalsIgnoreCase(String.valueOf(meuTexto.charAt(2)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra4.equalsIgnoreCase("")) {
+
+							if (!Tletra4.equalsIgnoreCase(String.valueOf(meuTexto.charAt(3)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra5.equalsIgnoreCase("")) {
+
+							if (!Tletra5.equalsIgnoreCase(String.valueOf(meuTexto.charAt(4)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra6.equalsIgnoreCase("")) {
+
+							if (!Tletra6.equalsIgnoreCase(String.valueOf(meuTexto.charAt(5)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+						//Separando o codigo
+						if (!Tletra7.equalsIgnoreCase("")) {
+
+							if (!Tletra7.equalsIgnoreCase(String.valueOf(meuTexto.charAt(6)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra8.equalsIgnoreCase("")) {
+
+							if (!Tletra8.equalsIgnoreCase(String.valueOf(meuTexto.charAt(7)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+						//Separando o codigo
+						if (!Tletra9.equalsIgnoreCase("")) {
+
+							if (!Tletra9.equalsIgnoreCase(String.valueOf(meuTexto.charAt(8)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra10.equalsIgnoreCase("")) {
+
+							if (!Tletra10.equalsIgnoreCase(String.valueOf(meuTexto.charAt(9)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra11.equalsIgnoreCase("")) {
+
+							if (!Tletra11.equalsIgnoreCase(String.valueOf(meuTexto.charAt(10)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra12.equalsIgnoreCase("")) {
+
+							if (!Tletra12.equalsIgnoreCase(String.valueOf(meuTexto.charAt(11)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						//Separando o codigo
+						if (!Tletra13.equalsIgnoreCase("")) {
+
+							if (!Tletra13.equalsIgnoreCase(String.valueOf(meuTexto.charAt(12)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+						//Separando o codigo
+						if (!Tletra14.equalsIgnoreCase("")) {
+
+							if (!Tletra14.equalsIgnoreCase(String.valueOf(meuTexto.charAt(13)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+						//Separando o codigo
+						if (!Tletra15.equalsIgnoreCase("")) {
+
+							if (!Tletra15.equalsIgnoreCase(String.valueOf(meuTexto.charAt(14)))) {
+
+								usaPalavra = 0;
+
+							}
+						}
+
+
+						if (usaPalavra == 1) {
+							myPalavras.add(meuTexto);
+						}
+
+
+						//Apaga StringBuilder
+						//meuTexto.delete(0, meuTexto.length());
+
+						//lê segunda linha até o final
+						meuTexto = bufferedReader.readLine();
+
+
+					}
+
+					myPalavras.add("");
+					myPalavras.add("");
+
+					if (myPalavras.size() == 2) {
+
+						NadaEncontrado();
+
+					}
+
+				} catch (StringIndexOutOfBoundsException er) {
+
+					//letra digitada fora do filtro
+					NadaEncontrado();
+
+				}
+
+			}//if numeroletra != 0
+			else{
+				NadaEncontrado();
+			}
+
+
+		} catch (IOException e) {
+
+			Log.e("BufferError", e.getMessage());
+
+		} finally {
+
+			//ESCONDER TECLADO
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			if(imm != null) {
+				imm.hideSoftInputFromWindow(myText1.getWindowToken(), 0);
+			}
+			//-------//
+
+
+			try {
+				if (inputStream != null) {
+					inputStream.close();
+				}
+
+				if (bufferedReader != null) {
+					bufferedReader.close();
+				}
+
+			} catch (IOException e) {
+
+				Log.e("BufferInputCloseErro", e.getMessage());
+
+			}
+
+		}
+
+
+
+	}
+
+	@Override
+	public void onDestroy(){
+
+        handler.removeCallbacks(myRunnable2);
+
+		super.onDestroy();
+	}
+
+
+
+}
+
+
